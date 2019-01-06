@@ -12,6 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -65,6 +66,11 @@ namespace Snipt.CRM.Extensions
         public static EntityCollection Fetch(this IOrganizationService org, string fetchXML)
         {
             return org.RetrieveMultiple(new FetchExpression(fetchXML));
+        }
+
+        public static WhoAmIResponse WhoAmI(this IOrganizationService org)
+        {
+            return (WhoAmIResponse)org.Execute(new WhoAmIRequest());
         }
     }
 }
